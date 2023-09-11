@@ -10,9 +10,9 @@ Status Report Template: https://github.com/VCU-CS-Capstone/0000---Capstone-Templ
 | Document | Tasks | Accomplishments | Issues |
 |---|---|---|---|
 | Project Plan | Overall week by week plan of milestones | | |
-| Week 1 Status Report | | | |
-| Week 2 Status Report | | | |
-| Week 3 Status Report | | | |
+| Week 1 Status Report | Meet with Rodrigo Spinola | Received a better understand of the project | |
+| Week 2 Status Report | Comprehend and take notes on research studies provided by Spinola | | |
+| Week 3 Status Report | Finish note taking for research papers focusing on stroke recovery & meet with Rodrigo Spinonal | | |
 | Week 4 Status Report | | | |
 | Week 5 Status Report | | | |
 | Week 6 Status Report | | | |
