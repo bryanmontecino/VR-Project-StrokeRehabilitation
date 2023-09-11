@@ -1,10 +1,7 @@
-# *Your Project Description*
-## *Sponsoring Company or Organization*
+# *Expanding the Frontiers of Stroke Recovery through the Use of Virtual/Mixed Reality*
+## *VCU Health*
 ## *Short Project Description*
-The directory structure in this GitHub is to allow the project to have all its resources self-contained.
-Open Source software should not just be a repository of code.  There are a number of directories to help you and others that will 
-follow in your foot steps.  It'll also allow the Linux Foundation OMP Mentorship program to keep track of your project and get
-a better understanding of the problems you encountered during the developmemnt of this project.
+This project aims to explore different technologies for supporting stroke recovery. It is expected the development of a prototype in partnership with researchers from VCU Health.
 
 | Folder | Description |
 |---|---|
@@ -14,10 +11,8 @@ a better understanding of the problems you encountered during the developmemnt o
 | scr | Source code - create as many subdirectories as needed |
 
 ## Project Team
-- *Mentor's Name*  - *Company Affliation* - Mentor
-- *Technical Advisor Name* - *Company Affliation* - Technical Advisor
-- *Faculty Advisor's Name* - *Department* - Faculty Advisor
-- *Student's Name* - *major* - Student Team Member
-- *Student's Name* - *major* - Student Team Member
-- *Student's Name* - *major* - Student Team Member
-- *Student's Name* - *major* - Student Team Member
+- *Daniel Falcao* - *VCU Health* - Mentor & Technical Advisor
+- *Rodrigo Spinola* - *Computer Science* - Faculty Advisor
+- *Akhila Mandalika* - *Computer Science* - Student Team Member
+- *Mia Park* - *Computer Science* - Student Team Member
+- *Bryan Lizama Montecino* - *Computer Science* - Student Team Member
