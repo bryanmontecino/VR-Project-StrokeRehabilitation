@@ -1,15 +1,15 @@
-# *CSnnn Project Name*
+# *CS 24-321 Expanding the Frontiers of Stroke Recovery through the Use of Virtual/Mixed Reality*
 ## **Sponsor:**
 
-**Students' Names:**
+**Students' Names: Akhila Mandalika, Mia Park, Bryan Montecino**
 
-**Mentor:**
+**Mentor: Daniel Falcao**
 
-**Faculty Advisor:**
+**Faculty Advisor: Rodrigo Spinola**
 
-**Project:**
+**Project: Expanding the Frontiers of Stroke Recovery through the Use of Virtual/Mixed Reality**
 
-**Project Description:**
+**Project Description: This project aims to explore different technologies for supporting stroke recovery. It is expected the development of a prototype in partnership with researchers from VCU Health.**
 
 **Problem Definition:**
 
