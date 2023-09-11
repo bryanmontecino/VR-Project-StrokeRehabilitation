@@ -1,5 +1,5 @@
 # *CS 24-321 Expanding the Frontiers of Stroke Recovery through the Use of Virtual/Mixed Reality*
-## **Sponsor:**
+## **Working With VCU Health**
 
 **Students' Names: Akhila Mandalika, Mia Park, Bryan Montecino**
 
