@@ -16,3 +16,4 @@ This project aims to explore different technologies for supporting stroke recove
 - *Akhila Mandalika* - *Computer Science* - Student Team Member
 - *Mia Park* - *Computer Science* - Student Team Member
 - *Bryan Lizama Montecino* - *Computer Science* - Student Team Member
+- *Aatir Siddiqui* - *Computer Science* - Student Team Member
