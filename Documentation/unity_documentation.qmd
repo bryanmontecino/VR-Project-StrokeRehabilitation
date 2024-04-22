@@ -1,0 +1,409 @@
+---
+title: Capstone Unity Documentation
+author: Aatir Siddiqui, Mia Park, Bryan Montecino, Akhila Mandalika
+date: March, 2024
+format:
+  html:
+    theme: lumen
+    html-math-method: katex
+    smooth-scroll: true
+    embed-resources: true
+css: custom-styles.css
+---
+
+# Introduction
+
+This document serves as a comprehensive guide to our capstone project, an innovative venture into the realm of virtual reality (VR) with the objective of assisting stroke rehabilitation patients. Utilizing the robust capabilities of Unity, MetaQuest 3, and OpenXR, our team has crafted a series of interactive levels designed to facilitate the recovery process through engaging VR experiences.
+
+At the heart of our project lies the integration of immersive technology with therapeutic practices, aiming to enhance motor skills, cognitive functions, and overall patient engagement in rehabilitation exercises. The VR environment we've developed offers patients a safe and controlled setting to practice movements and tasks that mimic real-life challenges, thereby promoting neuroplasticity and functional recovery.
+
+## Home Level
+This central hub allows users to navigate between different levels, offering a seamless transition and the freedom to choose their path through the rehabilitation process. It embodies the project's flexibility and user-centered design, acknowledging the varied needs and preferences of stroke rehabilitation patients.
+
+![](assets/home.png)
+
+## Practice Level
+Serving as an introductory tutorial, this level acquaints users with the VR interface and mechanics. It focuses on basic interactions such as picking up objects, providing a gentle introduction to the VR world created with Unity and MetaQuest 3. This stage is crucial for easing patients into the VR experience, ensuring they are comfortable and ready to engage with more complex tasks.
+
+![](assets/tutorial.png)
+
+## Level 1
+Toasting the Bread: Designed to simulate everyday tasks, this level challenges users to perform precise movements and hand-eye coordination exercises, reflecting the common goal of regaining independence in daily activities.
+
+![](assets/level1.png)
+
+## Level 2
+Cooking the Meatball: Building on the skills practiced in the previous levels, this scenario introduces more complex tasks that require timing, precision, and spatial awareness, further aiding in the rehabilitation journey.
+
+![](assets/level2.png)
+
+# Deep Dive
+
+Throughout this documentation, we will get into the specifics of each level, detailing the design decisions, Unity scripts, and code components that underpin our project. 
+
+Our aim is to not only showcase the technical achievements but also to illuminate the therapeutic potential of VR technology in stroke rehabilitation. This project represents a confluence of technology and healthcare, opening new avenues for patient care and recovery.
+
+# Home Level: Central Navigation Hub
+
+## Overview
+
+The Home Level serves as the central navigation hub in our virtual reality rehabilitation system, developed using Unity along with MetaQuest 3 and OpenXR technologies. It is meticulously designed to be minimalistic yet functional, ensuring ease of use for stroke rehabilitation patients. This level epitomizes the project's commitment to flexibility and a user-centered design, providing a personalized experience that caters to the varied needs and preferences of users.
+
+## Objectives
+
+The primary objective of the Home Level is to facilitate seamless navigation between the different levels of the rehabilitation program. It allows users to:
+
+- **Select Desired Activities**: Users can choose from the available levels, including the Practice Level, Level 1 (Toasting the Bread), and Level 2 (Cooking the Meatball), according to their rehabilitation needs and personal preferences.
+
+### C# Script Documentation
+
+Three interactable cubes that teleport the user to the corresponding level:
+
+* Tutorial
+* Level 1
+* Level 2
+
+The three cubes utilize the following script:
+```csharp
+public class HomeToLevel : MonoBehaviour {
+  public int sceneIndex; 
+  private int homeIndex = 0; 
+  private bool sceneLoaded = false; 
+  public void OnTriggerEnter(Collider col) {
+    if (!sceneLoaded) {
+      SceneManager.UnloadSceneAsync(homeIndex);
+      SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
+      sceneLoaded = true; 
+    }
+  }
+}
+```
+The script utilizes an index for each scene that is set by us. 
+
+- Tutorial: Scene Index of 1
+- Level 1: Scene Index of 2
+- Level 2: Scene Index of 3
+
+# Practice Level: Introduction to VR Interaction
+
+## Overview
+
+The Practice Level is designed as an entry point into the virtual reality experience, tailored specifically for stroke rehabilitation patients using the Unity platform with MetaQuest 3 and OpenXR. This foundational level aims to familiarize users with the VR interface and mechanics through a series of interactive and engaging tasks. By simulating various activities, the level introduces essential VR interactions that serve as the building blocks for more complex tasks in subsequent levels.
+
+## Objectives
+
+The Practice Level comprises a set of varied activities, each chosen to cover a broad spectrum of motor skills and cognitive abilities:
+
+- **Watching an Introductory VR Video**: An immersive video introduces users to the VR environment, providing context, instructions, and encouragement. This component is crucial for setting expectations and easing users into the VR experience.
+
+- **Picking Up Objects**: Users practice the basic interaction of picking up different objects, focusing on grip control and hand-eye coordination.
+  
+- **Picking Up and Setting Down an Object with Gravity Turned On**: This task emphasizes the understanding of weight and resistance in virtual objects, mirroring real-world physics to enhance the user's spatial awareness and manipulation skills.
+  
+- **Picking Up and Setting Down an Object with Gravity Turned Off**: Contrasting the previous activity, this exercise allows users to experience handling objects without the influence of gravity, focusing on precise control and movement in a different context.
+
+- **Throwing a Ball into a Basket**: This activity is designed to improve precision and arm strength, as users must calculate the force and direction needed to successfully throw a ball into a basket.
+  
+- **Hitting Golf Balls**: Simulating a golf swing requires users to coordinate their movements and apply the right amount of force, aiding in the development of balance and muscle control.
+
+## Environment and Interactivity
+
+- **Virtual Environment**: The Practice Level is set in a non-distracting, user-friendly virtual space designed to maximize focus on the tasks at hand. The environment is intuitive, ensuring that users can navigate and interact with objects effortlessly.
+  
+- **Interactive Objects**: A variety of objects with different sizes, shapes, and weights are available for interaction, each meticulously crafted to simulate real-world physics and provide a comprehensive introduction to VR manipulation.
+
+## Game Mechanics
+
+The Unity platform, enriched with MetaQuest 3 and OpenXR capabilities, enables the creation of a highly interactive and immersive experience through the use of:
+
+- Custom scripts for object interaction, allowing users to grab, throw, and place objects with natural movements.
+  
+- Physics simulations that accurately reflect real-world gravity, providing a realistic sense of weight and resistance for various objects.
+  
+- An interactive video player within the VR environment, designed to play educational and introductory content seamlessly.
+
+These technical components are seamlessly integrated to ensure a smooth and engaging introduction to VR for stroke rehabilitation patients. By completing the Practice Level, users are not only introduced to the fundamentals of VR interaction but also prepared for the challenges and therapeutic activities in the subsequent levels. This initial stage is pivotal in building confidence and competence in the VR space, setting the foundation for a successful rehabilitation journey.
+
+### C# Script Documentation
+
+With the tutorial, the user is shown a few things that can be done by the user. 
+
+* Interact with a cube to play a video:
+
+```csharp
+public class PlayVideoOnTouch : MonoBehaviour {
+  [SerializeField] public VideoPlayer videoPlayer;
+  private bool videoStarted = false;
+  private void OnTriggerEnter(Collider col) {
+    // Check if the video has already started to avoid restarting it unnecessarily
+    if (!videoStarted && videoPlayer != null) {
+      videoPlayer.Play();
+      videoStarted = true;
+    }
+  }
+}
+```
+
+* Pick up, drop and throw objects:
+
+This portion of the tutorial is done by utilizing the XR Grab Interactable component, which it is added to each object. Along with that, some objects have gravity component turned on, while others have gravity turned off.
+
+* Hitting a golf ball with a club:
+
+The script of this portion is somewhat complex, but in short there are two objects, the golf club and the golf ball, once the user picks up the golf club and swings it to the golf ball, the ball will detect the club and will behave as if it got hit with the club.
+```csharp
+void OnCollisionEnter(Collision collision) {
+  if (collision.collider.CompareTag("GolfClub") && !isAnimating) {
+    StartCoroutine(MoveAlongArc());
+  }
+}
+```
+
+# Level 1 : Toasting the Bread
+
+### Overview
+
+Level 1 transports players into a virtual kitchen environment, meticulously designed to simulate the real-world task of making toast. This level aims to enhance fine motor skills, hand-eye coordination, and the ability to follow sequences—key components in the rehabilitation process for stroke survivors.
+
+![](assets/level1closeup.png)
+
+### Objectives
+
+Players are tasked with a series of actions that mimic the process of toasting bread, a seemingly simple activity that requires precision and coordination. The objective is to successfully complete the following steps:
+
+- **Enter the Kitchen**: The level begins as the player enters a virtual kitchen, designed to be intuitive and user-friendly, facilitating ease of navigation and interaction.
+
+- **Pick Up Bread**: The player must locate the bread and use the VR controllers to simulate the action of picking it up, testing their grasp control and hand movements.
+
+- **Put it in Toaster**: After securing the bread, the player needs to place it in the toaster. This step challenges the players accuracy and ability to perform precise movements.
+
+- **Wait for Toaster**: Players must wait for the bread to be toasted, introducing an element of timing and patience into the task.
+
+- **Pick Up Toasted Bread**: Once the toaster is done, the player needs to pick up the now toasted bread, again practicing grasp control.
+
+- **Put Bread on Plate**: The final step involves placing the toast on a plate, requiring stability and accuracy to complete the task without dropping the bread.
+
+
+### Environment and Interactivity
+
+- **Kitchen Environment**: The virtual kitchen is designed to be realistic, providing a relatable and engaging setting for the task. Attention to detail in the kitchen’s layout, objects, and aesthetics enhances the immersion and user experience.
+
+- **Checklist on the Wall**: A visible checklist displays the same steps required to complete the level. This serves as a constant guide and reminder for the player, reinforcing the sequence of actions and aiding in cognitive rehabilitation by encouraging memory recall and task planning.
+
+
+### Game Mechanics
+
+The implementation of this level in Unity, utilizing MetaQuest 3 and OpenXR, involves the use of specific game objects and scripts designed to:
+
+* Facilitate object interaction (picking up and placing objects).
+
+* Simulate functionality of a toaster (timing mechanism and visual/audio cues indicating when the toast is ready).
+
+* Progress tracking through the checklist visualization.
+
+* These components work together to create a seamless and therapeutic VR experience, targeting the rehabilitation goals of improving motor skills and cognitive function. The following sections will detail the specific game objects and scripts utilized to bring Level 1 to life, including their functionalities and how they contribute to the rehabilitation objectives.
+
+### C# Script Documentation
+
+Tasks to be completed as user plays through the level:
+
+1) "Head over to the counter with the bread and grab it."
+
+To verify if the slice of bread has been picked up, we utilized the following script:
+```csharp
+// Check whether the bread has moved from starting position
+breadUpdatePosition = breadSlice.transform.position.y; 
+if (breadUpdatePosition - breadStartingPosition > 0.25 && !taskCompleted) {
+  check1.material.color = checkColor; 
+  // Play audio to let the user know they successfully did the task
+  if (!audioSource.isPlaying) {
+    audioSource.clip = completionSound;
+    audioSource.Play();
+  }
+  taskCompleted = true;
+}
+```
+
+2) "Locate the toaster and insert the slice of bread into it."
+
+The toaster script is more complex than other scripts, but that is due to having a smooth animation. Script below has been shorten to show how the animation works:
+```csharp
+// Once the toaster recognizes the slice of bread, start the coroutine
+private void OnTriggerEnter(Collider other) {
+  if (other.gameObject == breadOnCounter && !isToasting) {
+    isToasting = true;
+    StartCoroutine(ToastBreadAnimation());
+  }
+}
+
+private IEnumerator ToastBreadAnimation() {
+  // Code to animate the bread going up
+  float elapsedTime = 0;
+  Rigidbody rb = breadPlaceholder.GetComponent<Rigidbody>();
+  if (rb != null) {
+    // Change kinematic to true to disable bread from clashing with toaster
+    rb.isKinematic = true;
+  }
+  
+  while (elapsedTime < toastingTime / 2) {
+    breadPlaceholder.transform.position = Vector3.Lerp(breadDownPosition.position, breadUpPosition.position, elapsedTime / (toastingTime / 2));
+    elapsedTime += Time.deltaTime;
+    yield return null;
+  }
+  
+  if (rb != null) {
+    // Disabling kinematics will allow the bread to fall due to gravity
+    rb.isKinematic = false;
+  }
+}
+```
+
+3) "Now that you toasted it, plate it on the dining table."
+
+```csharp
+void OnTriggerEnter(Collider other) {
+  // Check if the object colliding with the plate is tagged as "Toast".
+  if (other.gameObject.CompareTag("Toast")) {
+    check3Box.material.color = checkColor;
+    
+    // Do a few changes to set the level as complete
+    if (!levelCompleteText.activeSelf) {
+      levelCompleteText.SetActive(true);
+    }
+    if (!finishCube.activeSelf) {
+      finishCube.SetActive(true);
+    }
+  }
+}
+```
+
+# Level 2 : Cooking the meatball
+
+### Overview
+
+Level 2 continues the journey of rehabilitation through VR by introducing players to a cooking scenario focused on making a meatball. This level is designed to further develop fine motor skills, cognitive abilities, and introduce elements of safety and sequence following within a kitchen setting.
+
+![](assets/level2instructions.png)
+
+### Objectives
+
+The level sets forth a series of tasks that simulate the cooking process, demanding precision, timing, and cognitive planning from the player. The objectives are as follows:
+
+- **Grab Meatball from Refrigerator**: Players start by opening the refrigerator to find a meatball, testing their ability to navigate and interact within the virtual kitchen.
+
+- **Place Meatball in Bowl Next to Sink**: After retrieving the meatball, players are tasked with placing it in a specific bowl located next to the sink, challenging their precision and spatial awareness.
+
+- **Turn On Stove Burner**: Players must then interact with a brown knob on the stove to turn on the burner, introducing elements of safety and control manipulation.
+
+- **Wait for the Meatball to Cook**: This step requires players to wait for a set amount of time, simulating the cooking process and testing patience and timing.
+
+- **Turn Off Stove Burner**: After cooking, players need to ensure kitchen safety by turning off the burner, again using the brown knob on the stove.
+
+- **Transfer Cooked Meatball into Bowl**: The final step involves using a pan to transfer the cooked meatball into a designated bowl to the left of the stove. This task tests the players' ability to handle kitchen utensils and transfer items safely.
+
+
+### Environment and Interactivity
+
+- **Kitchen Environment**: The setting is a virtual kitchen, tailored to provide a realistic and immersive experience with detailed objects and interactive components relevant to cooking.
+
+- **Checklist on the Wall**: Similar to Level 1, a checklist outlining the steps to complete the level is placed visibly on the wall. This aids in reinforcing the sequence of tasks, enhancing memory recall, and cognitive processing abilities.
+
+
+### Game Mechanics
+
+To achieve the level's objectives, specific game objects and scripts are utilized within the Unity platform, powered by MetaQuest 3 and OpenXR. These include:
+
+* Interactive refrigerator, bowl, stove, and pan objects with detailed textures and models to simulate a real kitchen.
+
+* Scripts to manage object interactions such as grabbing, placing, and manipulating kitchen tools and appliances.
+
+* A system to simulate the cooking process, including visual and audio cues to indicate when the meatball is cooked.
+
+* Logic to control the stove's burner, including turning it on and off, to introduce safety considerations into the gameplay.
+
+The combination of these elements creates a compelling VR experience that not only entertains but also serves as a valuable tool in stroke rehabilitation. By engaging in tasks that mimic everyday cooking activities, players work on essential recovery goals such as improving motor function, cognitive skills, and safety awareness in the kitchen. Further sections will detail the specific game objects and scripts used in Level 2, highlighting their contribution to achieving the rehabilitation objectives.
+
+### C# Script Documentation
+
+Tasks to be completed:
+
+1) Open the refrigerator and grab the meatball to place it in the bowl next to the sink
+
+Script to open door:
+```csharp
+private void OnTriggerEnter(Collider other) {
+  if (other.CompareTag("Player")) {
+    if (!istrigger) { 
+      myDoor.Play("BigDoorOpen", 0, 0.0f); 
+      istrigger = true;    
+    }
+    else {
+      myDoor.Play("BigDoorClose", 0, 0.0f);
+      istrigger = false;
+    }   
+  }
+}
+```
+
+A simple script that checks for an object tagged as Sausage:
+```csharp
+void OnTriggerEnter(Collider col) {
+  if (col.CompareTag("Sausage")) {
+    check1Box.material.color = checkColor; 
+  }
+}
+```
+
+2) Touch brown knob on stove to turn the burner on
+```csharp
+private void OnTriggerEnter(Collider col) {
+  if (col.CompareTag("Player")) {
+    if (!istrigger) { 
+      myKnob.Play("StoveKnobOn", 0, 0.0f); 
+      objectRenderer.material.color = endColor;
+      check2Box.material.color = checkColor; 
+      istrigger = true;    
+    }
+    else {
+      myKnob.Play("StoveKnobClose", 0, 0.0f);
+      objectRenderer.material.color = startColor;
+      check4Box.material.color = checkColor;
+      istrigger = false;
+    }
+  }
+}
+```
+
+3) Wait for meatball to cook
+```csharp
+void OnTriggerEnter(Collider other) {
+  if (other.CompareTag("Sausage") && ColorUtility.ToHtmlStringRGBA(oldColor) != ColorUtility.ToHtmlStringRGBA(initialStoveColor)) {
+    StartCoroutine(CookCoroutine());
+  }
+}
+
+IEnumerator CookCoroutine() {
+  yield return new WaitForSeconds(7);
+  objectRenderer.material.color = cookedColor;
+  check3Box.material.color = checkColor;
+}
+```
+
+4) Touch brown knob on stove to turn the burner off
+Utilizes the same script as turning the burner on, but if the stove is already turned on, once the user interacts with the knob, the stove will turn back to the original color.
+
+5) Transfer the cooked meatball into the bowl to the left of the stove by grabbing the pan handle
+Script compares the tag of the object to "Sausage", along with verifying the meatball has the same color as the cooked meatball.
+```csharp
+void OnTriggerEnter(Collider col) {
+  if (col.CompareTag("Sausage") && ColorUtility.ToHtmlStringRGBA(sausageMaterial) == ColorUtility.ToHtmlStringRGBA(cookedColor)) {
+    check1Box.material.color = check5Color; 
+    if (!levelCompleteText.activeSelf) {
+      levelCompleteText.SetActive(true);
+    }
+    if (!finishCube.activeSelf) {
+      finishCube.SetActive(true);
+    }
+  }
+}
+```

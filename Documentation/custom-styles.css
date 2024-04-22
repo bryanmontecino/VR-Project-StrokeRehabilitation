@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(98, 93, 93);
+    color: white;
+}
+
+a {
+    color: #5599ff; /* This makes links light blue for better visibility, adjust as needed */
+}
+
+/* Adding the new rule for headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #000000; /* Dark Blue - Change this color code to your preference */
+}
