@@ -41,7 +41,7 @@ Cooking the Meatball: Building on the skills practiced in the previous levels, t
 
 Throughout this documentation, we will get into the specifics of each level, detailing the design decisions, Unity scripts, and code components that underpin our project. 
 
-Our aim is to not only showcase the technical achievements but also to illuminate the therapeutic potential of VR technology in stroke rehabilitation. This project represents a confluence of technology and healthcare, opening new avenues for patient care and recovery.
+We aim not only to showcase the technical achievements but also to illuminate the therapeutic potential of VR technology in stroke rehabilitation. This project represents a confluence of technology and healthcare, opening new avenues for patient care and recovery.
 
 # Home Level: Central Navigation Hub
 
